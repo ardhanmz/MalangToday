@@ -6,11 +6,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorPrimaryText">@color/colorPrimaryText</item>
-        <item name="textColorSecondaryText">@color/colorSecondaryText</item>
-        <item name="colorIcons">@color/colorIcons</item>
-        <item name="colorDivider">@color/colorDivider</item>
-        
     </style>
     <style name="SplashScreenStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_brand_logo</item>
