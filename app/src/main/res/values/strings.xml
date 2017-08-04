@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">MalangToday</string>
+    <string name="app_name">MalangTODAY</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Pengaturan</string>
+    <string name="loading_article">Memuat Artikel</string>
+    <string name="loading_category">Memuat Kategori</string>
 </resources>
