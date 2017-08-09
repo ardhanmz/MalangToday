@@ -27,24 +27,28 @@ public class Post {
     public int hashCode(){
         return Integer.valueOf(this.getId()).hashCode();
     }
-    public void setTitle(String tittle){
-        this.title=tittle;
-    }
-    public String getTittle(){
-        return title;
-    }
-    public void setContent(String Content){
-        this.content = Content;
-    }
-    public String getContent(){
+    public int getId(){return id;}
+
+    public void setId(int id){this.id= id;}
+
+    public String getTitle(){ return  title;}
+    public void setTitle(String title){this.title= title;}
+    public String getContent() {
         return content;
     }
-    public void setThumbnailUrl(String ThumbnailURL){
-        this.thumbnailUrl = ThumbnailURL;
+
+    public void setContent(String content) {
+        this.content = content;
     }
-    public String getThumbnailUrl(){
+
+    public String getThumbnailUrl() {
         return thumbnailUrl;
     }
+
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
+    }
+
     public String getFeaturedImageUrl() {
         return featuredImageUrl;
     }
@@ -52,22 +56,10 @@ public class Post {
     public void setFeaturedImageUrl(String featuredImageUrl) {
         this.featuredImageUrl = featuredImageUrl;
     }
+
     public ArrayList<String> getCategories() {
         return categories;
     }
-
-    public void setCategories(ArrayList<String> categories) {
-        this.categories = categories;
-    }
-
-    public String getViewCount() {
-        return viewCount;
-    }
-
-    public void setViewCount(String viewCount) {
-        this.viewCount = viewCount;
-    }
-
     public String getDate() {
         return date;
     }
@@ -84,22 +76,24 @@ public class Post {
         this.author = author;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-
-
     public String getUrl() {
         return url;
     }
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public void setCategories(ArrayList<String> categories) {
+        this.categories = categories;
+    }
+
+    public String getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(String viewCount) {
+        this.viewCount = viewCount;
     }
 
 }

@@ -7,4 +7,11 @@
     <string name="action_settings">Pengaturan</string>
     <string name="loading_article">Memuat Artikel</string>
     <string name="loading_category">Memuat Kategori</string>
+    <string name="tab_all">Semua</string>
+    <string name="action_retry">Mengulangi</string>
+    <string name="error_load_categories">Kesalahan Memuat Kategory</string>
+    <string name="search_hint">Cari</string>
+
+    <string name="action_share">Bagikan</string>
+    <string name="error_load_post">Gagal Memuat Artikel</string>
 </resources>

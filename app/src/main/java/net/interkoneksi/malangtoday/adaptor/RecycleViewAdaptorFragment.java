@@ -11,23 +11,20 @@ import net.interkoneksi.malangtoday.model.Category;
 
 import java.util.ArrayList;
 
-public class RecycleViewAdaptorFragment {
+public class RecycleViewAdaptorFragment extends FragmentPagerAdapter {
     private ArrayList<Category> categories;
 
     public RecycleViewAdaptorFragment (FragmentManager fm, ArrayList<Category> categories){
         super(fm);
         this.categories = categories;
     }
-
     @Override
-    public Fragment getItem(int postition){
+    public Fragment getItem(int position){
         return RecyclerViewFragment.newInstance(categories.get(position).getId());
     }
 
     @Override
-    public charSequence getPageTitle(int position){
-        return categories.get(position).getName();
-    }
+    public CharSequence getPageTitle(int position){ return categories.get(position).getName();}
 
     @Override
     public int getCount(){
