@@ -1,8 +1,6 @@
 package net.interkoneksi.malangtoday.app;
 
-/**
- * Created by Ardhan MZ on 29-Jul-17.
- */
+
 
 import net.interkoneksi.malangtoday.util.LruBitmapCache;
 import android.app.Application;

@@ -3,11 +3,9 @@ package net.interkoneksi.malangtoday.app;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.app.Activity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.appcompat.*;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +24,7 @@ import org.json.JSONObject;
 import net.interkoneksi.malangtoday.R;
 import net.interkoneksi.malangtoday.adaptor.RecycleViewAdaptor;
 import net.interkoneksi.malangtoday.util.JSONParser;
-import net.interkoneksi.malangtoday.Config.Config;
+import net.interkoneksi.malangtoday.util.Config;
 import net.interkoneksi.malangtoday.model.Post;
 
 import java.util.ArrayList;
@@ -36,6 +34,7 @@ import java.util.Set;
 public class RecyclerViewFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
     protected static final String CAT_ID = "id";
     protected static final String QUERY = "query";
+    protected static final String TAG = "RecyclerViewFragment";
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
@@ -159,16 +158,16 @@ public class RecyclerViewFragment extends Fragment implements SwipeRefreshLayout
         String url;
         if (!mQuery.isEmpty()){
             isSearch = true;
-            url = Config.BASE_URL +"?json=get_search_results%search" +mQuery+"&page="
-                    +String.valueOf(page);
+            url = Config.BASE_URL + "?json=get_search_results&search=" + mQuery +
+                    "&page=" + String.valueOf(page);
         }else {
             isSearch = false;
             if (mCatId == 0){
-                url = Config.BASE_URL +"json=get_post&page="+String.valueOf(page);
+                url = Config.BASE_URL + "?json=get_recent_posts&page=" + String.valueOf(page);
             }else {
                 isSearch = false;
-                url = Config.BASE_URL +"json=get_category_post&category_id=" +String.valueOf(mCatId)
-                        + "&page=" +String.valueOf(page);
+                url = Config.BASE_URL + "?json=get_category_posts&category_id=" + String.valueOf(mCatId)
+                        + "&page=" + String.valueOf(page);
             }
         }
 
@@ -184,6 +183,7 @@ public class RecyclerViewFragment extends Fragment implements SwipeRefreshLayout
                         postList.clear();
                         postList.addAll(new ArrayList<>(set));
                         mPostNum = postList.size();
+                        Log.d(TAG, "Number Post"+mPostNum);
                         mAdaptor.notifyDataSetChanged();
                         if (RecyclerViewFragment.this.mPage != 1) {
                             mLayoutManager.scrollToPosition(mPastVisibleItems + mVisibleItemCount);
@@ -201,6 +201,7 @@ public class RecyclerViewFragment extends Fragment implements SwipeRefreshLayout
                         mSwipeRefreshLayout.setRefreshing(false);
 
                         volleyError.printStackTrace();
+                        Log.d(TAG, "=============ERROR VOLLEY=============="+volleyError.getMessage());
 
                         Snackbar.make(mRecyclerView, R.string.error_load_post, Snackbar.LENGTH_LONG)
                                 .setAction(R.string.action_retry, new View.OnClickListener() {
@@ -214,7 +215,7 @@ public class RecyclerViewFragment extends Fragment implements SwipeRefreshLayout
         request.setRetryPolicy(new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
-        AppController.getInstance().addToRequestQueue(request);
+        AppController.getInstance().addToRequestQueue(request,TAG);
     }
     @Override
     public void onRefresh(){

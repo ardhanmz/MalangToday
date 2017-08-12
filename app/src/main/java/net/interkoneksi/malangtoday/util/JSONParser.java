@@ -8,7 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import net.interkoneksi.malangtoday.Config.Config;
 import net.interkoneksi.malangtoday.R;
 import net.interkoneksi.malangtoday.app.AppController;
 
