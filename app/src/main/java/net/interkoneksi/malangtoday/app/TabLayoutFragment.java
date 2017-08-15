@@ -5,11 +5,16 @@ import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,12 +22,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import net.interkoneksi.malangtoday.MainActivity;
 import net.interkoneksi.malangtoday.util.Config;
 import net.interkoneksi.malangtoday.R;
 import net.interkoneksi.malangtoday.adaptor.RecycleViewAdaptorFragment;
@@ -42,6 +49,8 @@ public class TabLayoutFragment extends Fragment implements SearchView.OnQueryTex
     private ViewPager mViewPager;
     private SearchView searchView;
     private MenuItem searchMenuItem;
+    private Toolbar toolbar;
+    private FloatingActionButton fab;
 
     protected static ArrayList<Category> categories = null;
     private  TabLayoutListener mListener;
@@ -54,6 +63,7 @@ public class TabLayoutFragment extends Fragment implements SearchView.OnQueryTex
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         setHasOptionsMenu(true);
+
     }
 
     @Override
@@ -71,17 +81,7 @@ public class TabLayoutFragment extends Fragment implements SearchView.OnQueryTex
         super.onActivityCreated(savedInstanceState);
         loadCategories();
     }
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-        Log.d(TAG, "onCreateOptionsMenu");
 
-        inflater.inflate(R.menu.menu_main, menu);
-        SearchManager searchManager= (SearchManager) getActivity()
-                .getSystemService(Context.SEARCH_SERVICE);
-        searchMenuItem = menu.findItem(R.id.action_search);
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         if (item.getItemId() == R.id.action_search){

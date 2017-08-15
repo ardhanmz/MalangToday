@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         fm = getSupportFragmentManager();
 
         //memulai fragment
@@ -53,6 +54,10 @@ public class MainActivity extends AppCompatActivity
 
         ft.hide(pf);
         ft.commit();
+        support();
+    }
+    public void support(){
+        setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         ImageView toolbarTitlle = (ImageView) findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbar);
@@ -60,6 +65,23 @@ public class MainActivity extends AppCompatActivity
         if(toolbar != null){
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
     @Override
     public void onPostSelected(Post post,boolean isSearch){
